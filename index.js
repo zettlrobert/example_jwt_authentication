@@ -18,6 +18,12 @@ const connectDB = async () => {
 connectDB();
 
 
+// Middleware
+app.use(express.json()); // <-- recognize incomming request Objects as JSON
+
+
+
+
 // Importing Routes
 const authRoute = require('./routes/auth');
 
