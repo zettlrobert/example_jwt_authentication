@@ -4,8 +4,8 @@ const {
   registerValidation,
   loginValidation } = require('../utils/validation');
 const bcrypt = require('bcryptjs');
-
-
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 
 
@@ -70,7 +70,10 @@ router.post('/login', async (req, res) => {
 
   if (!validPassword) return res.status(400).send('Invalid Password');
 
-  res.send('Logged in');
+
+  // Generate and assign token
+  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+  res.header('auth-token', token).send(token);
 })
 
 

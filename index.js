@@ -1,12 +1,13 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 // Connect to DB
 const connectDB = async () => {
 
   const conn = await mongoose.connect(
-    'mongodb://localhost:27017/example_jwt_authentication',
+    process.env.DB_CONNECT,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
